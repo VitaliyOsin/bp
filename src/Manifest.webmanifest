@@ -1,0 +1,10 @@
+{
+  "name": "План Победы",
+  "short_name": "Bible Plan",
+  "description": "Прочитай Библию за год",
+  "start_url": "/bp",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "icons": [{ "src": "./icon1.png", "sizes": "192x192", "type": "image/png" }]
+}
