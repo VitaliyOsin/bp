@@ -1,22 +1,35 @@
 import { m, months } from "./date";
 import { plan } from "./db";
-import { makeLine, transformPlan } from "./functions";
+import { makeLine, transformPlan_2 } from "./functions";
 import { cel, gel } from "./utils";
 
 export const page = (month) => {
   const root = gel("root");
 
-  if (!localStorage.getItem("plan")) {
-    localStorage.setItem("plan", JSON.stringify(transformPlan(plan)));
+  if (!localStorage.getItem("plan_b")) {
+    if (!localStorage.getItem("plan")) {
+      localStorage.setItem("plan_b", JSON.stringify(transformPlan_2(plan)));
+    } else {
+      const plan_b = JSON.parse(localStorage.getItem("plan"));
+      localStorage.setItem("plan_b", JSON.stringify(transformPlan_2(plan_b)));
+    }
   }
 
-  const tplan = JSON.parse(localStorage.getItem("plan"));
+  //console.log(JSON.parse(localStorage.getItem("plan")));
+
+  /* if (!localStorage.getItem("plan_b")) {
+    localStorage.setItem("plan_b", JSON.stringify(transformPlan_2(plan)));
+  } */
+
+  const tplan = JSON.parse(localStorage.getItem("plan_b"));
+
+  //console.log(transformPlan_2(plan));
 
   root.innerHTML = `
 		<div class="ddd">
-			<div class="pickM"><div class="pickDiv"></div></div>
+			<div data-rol="pickM" class="pickM"><div class="pickDiv" data-rol=""pickDiv></div></div>
 			<h1>${months[month]}</h1>
-			<button class="cls-btn">Очистить</buttom>
+			<button class="cls-btn" data-rol="cls-btn">Очистить</buttom>
 		</div>
 		`;
 
@@ -34,6 +47,7 @@ export const pickMonth = () => {
     const dd = cel("div");
     const sp = cel("span");
     sp.className = "yes";
+    sp.dataset.rol = "yes";
     dd.style.height = window.innerHeight / 4 - 20 + "px";
     if (i === m) {
       dd.style.background = "#6CFF6A";

@@ -1,12 +1,14 @@
 import { m } from "./js/date";
-import { cleanHandler, inputHandler } from "./js/functions";
+import { cleanHandler, diHandler, inputHandler } from "./js/functions";
 import { page, pickMonth } from "./js/modules";
 import { gel } from "./js/utils";
 
 page(m);
 
+//console.log(localStorage.getItem("plan"));
+
 window.addEventListener("click", (e) => {
-  switch (e.target.className) {
+  switch (e.target.dataset.rol) {
     case "input":
       inputHandler(e);
       break;
@@ -28,6 +30,15 @@ window.addEventListener("click", (e) => {
       break;
     case "cls-btn":
       cleanHandler();
+      break;
+    case "di":
+      const { target: t } = e;
+      console.log(t.dataset.point);
+      diHandler(t.dataset.point);
+
+      break;
+    default:
+      () => null;
       break;
   }
 });
