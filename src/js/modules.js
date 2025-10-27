@@ -27,7 +27,7 @@ export const page = (month) => {
 
   root.innerHTML = `
 		<div class="ddd">
-			<div data-rol="pickM" class="pickM"><div class="pickDiv" data-rol=""pickDiv></div></div>
+			<div data-rol="pickM" class="pickM"><div class="pickDiv" data-rol="pickDiv"></div></div>
 			<h1>${months[month]}</h1>
 			<button class="cls-btn" data-rol="cls-btn">Очистить</buttom>
 		</div>
@@ -57,6 +57,7 @@ export const pickMonth = () => {
     sp.style.border = "none";
     dd.append(sp);
     dd.className = "yes";
+    dd.dataset.rol = "yes";
     dd.setAttribute("point", i);
 
     conDiv.append(dd);
