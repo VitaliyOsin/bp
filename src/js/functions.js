@@ -27,10 +27,15 @@ export function transformPlan_2(startPlan) {
     return tv.map((m, n) => ({
       date: (n + 1).toString(),
       month: i,
-      list: m.list.map((l, li) => ({
-        text: l,
-        done: false,
-      })),
+      list: m.list
+        ? m.list.map((l, li) => ({
+            text: l,
+            done: false,
+          }))
+        : m.map((l, li) => ({
+            text: l,
+            done: false,
+          })),
       done: m.done !== undefined ? m.done : false,
     }));
   });
@@ -104,6 +109,9 @@ export function diHandler(point) {
 }
 
 export function cleanHandler() {
-  localStorage.removeItem("plan");
+  localStorage.removeItem("plan_b");
+  if (localStorage.getItem("plan")) {
+    localStorage.removeItem("plan");
+  }
   page(m);
 }
