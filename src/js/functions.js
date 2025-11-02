@@ -110,8 +110,8 @@ export function diHandler(point) {
 
 export function cleanHandler() {
   localStorage.removeItem("plan_b");
-  if (localStorage.getItem("plan")) {
-    localStorage.removeItem("plan");
+  if (localStorage.getItem("plan_b")) {
+    localStorage.removeItem("plan_b");
   }
   page(m);
 }
